@@ -1,0 +1,65 @@
+use ShoppingDetails;
+
+//we are using the Collection Named ShoppingDetials.
+
+
+//INSERT A SINGLE DOCUMENT.
+db.ShoppingDetails.insertOne(
+    {
+    item_id:1,
+    item_details:"Details of Item 1",
+    stock_availability:"Yes",
+    stock_count:200,
+    manufacture_date:Date()
+  }
+)
+
+
+//INSERT MANY DOCUMENTS.
+db.ShoppingDetails.insertMany([
+  {
+    item_id:2,
+    item_details:"Details of Item 2",
+    stock_availability:"Yes",
+    stock_count:500,
+    manufacture_date:Date()
+  },
+  {
+    item_id:3,
+    item_details:"Details of Item 3",
+    stock_availability:"No",
+    stock_count:2000,
+    manufacture_date:Date()
+  },
+  {
+    item_id:4,
+    item_details:"Details of Item 4",
+    stock_availability:"No",
+    stock_count:1260,
+    manufacture_date:Date()
+  }]);
+
+
+
+//find All the Documents within the Collection.
+//db.ShoppingDetails.find();
+  
+  
+//Find only Selected Documents with Limit Constraints.
+
+//db.ShoppingDetails.find().limit(4);
+
+
+
+
+//SORT THE DOCUMENTS IN THE ASCENDING ORDER.
+//we assign 1 for ascending and -1 for descending.
+
+//ASCENDING SORT
+db.ShoppingDetails.find().sort({stock_count:1});
+
+
+
+//DESCENDING SORT
+//db.ShoppingDetails.find().sort({item_id:-1});
+
