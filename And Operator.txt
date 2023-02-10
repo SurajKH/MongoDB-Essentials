@@ -1,0 +1,64 @@
+use ShoppingDetails;
+
+
+//Single Insertion of a Single Document into ShoppingDetails Collections.
+db.ShoppingDetails.insertOne(
+    {
+    item_id:1,
+    item_details:"Details of Item 1",
+    stock_availability:"Yes",
+    stock_count:200,
+    manufacture_date:Date()
+  }
+)
+
+
+//Insertions of Multiple Documents into the ShoppingDetails Collections.
+db.ShoppingDetails.insertMany([
+  {
+    item_id:2,
+    item_details:"Details of Item 2",
+    stock_availability:"Yes",
+    stock_count:500,
+    manufacture_date:Date()
+  },
+  {
+    item_id:3,
+    item_details:"Details of Item 3",
+    stock_availability:"No",
+    stock_count:2000,
+    manufacture_date:Date()
+  },
+  {
+    item_id:4,
+    item_details:"Details of Item 4",
+    stock_availability:"No",
+    stock_count:1260,
+    manufacture_date:Date()
+  },
+   {
+    item_id:5,
+    item_details:"Details of Item 5",
+    stock_availability:"Yes",
+    stock_count:1000,
+    manufacture_date:Date()
+  }]);
+
+
+//And Operator in MongoDB.
+//here we consider the And Operator for the below query as followed.
+//the document must match with the item_id and the stock_availability status of the document must be true.
+db.ShoppingDetails.find({$and:[{item_id:2},{stock_availability:"Yes"}]});
+
+
+//And Operator Usage in Complex Queries.
+//Complex Query:
+//Returns the Record with item_id as 2 and (stock_availability as Yes
+// and stock count to be greater than 1000).
+db.ShoppingDetails.find({
+  $and:[{item_id:2},
+  {$and:[{stock_availability:"Yes",stock_count:{$gte:1000}
+    
+  }]}]});
+  
+  
